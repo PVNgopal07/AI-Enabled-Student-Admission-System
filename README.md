@@ -1,162 +1,115 @@
-# AI-Admissions Agent 
+# Vishnu Institute of Technology (VIT) - AI-Enabled Student Admission System
 
-An AI agent for admissions that combines **AWS Bedrock AgentCore** with a modern **Next.js frontend** to provide an AI-powered conversational experience for prospective students. The system integrates Salesforce CRM, WhatsApp messaging via Twilio, and AWS services to deliver a seamless admissions counselor experience that understands student needs, answers questions, and facilitates advisor connections.
-
-![User Interface Demo](./docs/media/final-gif-demo-admissions.gif)
+An AI-enabled admissions web application customized for the **Vishnu Institute of Technology (VIT)**. The system features a responsive **Next.js frontend** integrated with a **Node.js/Express mock-server backend** that facilitates student lead capture, AI-powered conversational support, Salesforce CRM syncing, and WhatsApp notifications via Twilio (using free-tier sandbox/hosting services like Vercel and Render).
 
 ---
-
-## Disclaimers
-Customers are responsible for making their own independent assessment of the information in this document.
-
-This document:
-
-(a) is for informational purposes only,
-
-(b) references AWS product offerings and practices, which are subject to change without notice,
-
-(c) does not create any commitments or assurances from AWS and its affiliates, suppliers or licensors. AWS products or services are provided "as is" without warranties, representations, or conditions of any kind, whether express or implied. The responsibilities and liabilities of AWS to its customers are controlled by AWS agreements, and this document is not part of, nor does it modify, any agreement between AWS and its customers, and
-
-(d) is not to be considered a recommendation or viewpoint of AWS.
-
-Additionally, you are solely responsible for testing, security and optimizing all code and assets on GitHub repo, and all such code and assets should be considered:
-
-(a) as-is and without warranties or representations of any kind,
-
-(b) not suitable for production environments, or on production or other critical data, and
-
-(c) to include shortcuts in order to support rapid prototyping such as, but not limited to, relaxed authentication and authorization and a lack of strict adherence to security best practices.
-
-All work produced is open source. More information can be found in the GitHub repo.
 
 ## Table of Contents
 
-| Index                                                       | Description                                                    |
-| :---------------------------------------------------------- | :------------------------------------------------------------- |
-| [High-Level Architecture](#high-level-architecture)         | System architecture overview with component interactions       |
-| [Key Features](#key-features)                               | Core capabilities and functionality                            |
-| [Directory Structure](#directory-structure)                     | Repository directory organization                              |
-| [Getting Started](#getting-started)                         | Quick start guide                                              |
-| [Deployment](#deployment)                                   | How to deploy the solution                                 |
-| [Modification](#modification)                             | Adapting for different universities                            |
-| [Credits](#credits)                                         | Contributors and acknowledgments                               |
-| [License](#license)                                         | Project license information                                    |
-
----
-
-## High-Level Architecture
-
-The following architecture diagram illustrates the various services and components that make up the solution. The agent uses custom tools to retrieve university information, manage conversations, update Salesforce CRM, and trigger WhatsApp follow-ups. For an in-depth explanation of the backend, please look at the [Architecture Deep Dive](./docs/architectureDeepDive.md).
-
-![Architecture Diagram](./docs/media/AI-Agent-admissions-architecture-v5.png)
-
-
+| Section | Description |
+| :--- | :--- |
+| [Key Features](#key-features) | Core capabilities of the platform |
+| [Directory Structure](#directory-structure) | Repository layout and folder description |
+| [Getting Started](#getting-started) | Local development setup for frontend and backend |
+| [Free-Tier Deployment](#free-tier-deployment) | Production hosting instructions |
+| [Subpages & Routing](#subpages--routing) | Available route systems and features |
+| [License](#license) | Project license information |
 
 ---
 
 ## Key Features
 
-- **Intelligent Chatbot**: Conversational AI agent (Nemo) that understands context and builds rapport with prospective students
-- **Knowledge Base Access**: Instant answers to program, admission, and university questions
-- **CRM Integration**: Automatic lead creation and updates in Salesforce for admissions staff
-- **WhatsApp Follow-Up**: Automated follow-up messages via WhatsApp for convenience
-- **Multi-Language Support**: Supports 70+ languages using AWS Translate for seamless multilingual conversations
+- **Intelligent Admissions Chatbot (Nemo)**: Assists students with program structures, admissions schedules, and university details.
+- **Smart Inquiry Form**: Seamlessly captures student leads and transfers them directly into the Admissions interface.
+- **Multi-Step Application Wizard (`/apply`)**: High-fidelity B.Tech registration wizard capturing personal, entrance exam (EAPCET/VITB code), and branch choice fields.
+- **Salesforce CRM Sync**: Automatically pushes inquiry submissions and handoffs as Leads/Tasks to a Salesforce Developer Sandbox.
+- **WhatsApp Follow-Ups**: Dynamically coordinates Twilio WhatsApp Sandbox templates to confirm admissions officer handoffs.
+- **Responsive Program Finder**: Lets students search and self-route straight to B.Tech, M.Tech, and Ph.D. curriculum resources.
 
+---
 
 ## Directory Structure
 
 ```
-AI-Powered-Admissions-Agent/
+AI-Enabled Student Admission System/
 ├── Backend/
-│   └── admissions-ai-agent/          # AWS CDK Infrastructure
-│       ├── bin/
-│       │   └── admissions-ai-agent.ts    # CDK app entry point
-│       │   
-│       ├── lib/
-│       │   └── amplify-hosting-stack.ts       # Amplify Hosting Stack
-│       │   └── admissions-ai-agent-stack.ts    # Admissions AI Agent Stack
-│       │   
-│       ├── lambda/
-│       │   ├── agent-proxy/                # Node.js Lambda (streaming agent responses)
-│       │   ├── form_submission.py          # Salesforce lead creation
-│       │   └── send_whatsapp_twilio.py     # WhatsApp via Twilio
-│       │   
-│       ├── AgentCore/                      # Bedrock AgentCore Agent
-│       │   ├── nemo_agent.py              # Main agent definition
-│       │   ├── tools/                      # Custom agent tools
-│       │   │   ├── retrieve_tool.py       # Knowledge base retrieval
-│       │   │   ├── salesforce_tools.py    # CRM integration
-│       │   │   ├── whatsapp_twilio_tool.py # WhatsApp messaging
-│       │   │   ├── advisor_handoff_tool.py # Advisor handoff workflow
-│       │   │   ├── translate_tool.py      # Multi-language translation
-│       │   │   └── session_utils.py       # Session management
-│       │   └── requirements.txt           # Python dependencies
-│       │   
-│       ├── salesforce-layer/              # Lambda layer for Salesforce
-│       ├── twilio-layer/                  # Lambda layer for Twilio
-│       ├── package.json                   
-│       └── tsconfig.json                  
+│   └── mock-server/                 # Express.js API Platform
+│       ├── .env                     # Server Env credentials (Salesforce/Twilio)
+│       └── server.js                # Host router and API endpoints
 │
-├── Frontend/                              # Next.js Web Application
-│   ├── app/                               # Next.js App Router
-│   │   ├── page.tsx                      # Homepage
-│   │   └── layout.tsx                    # Root layout
-│   │   
-│   ├── components/
-│   │   ├── nemo/                         # Chatbot UI components
-│   │   └── ...
-│   │                          # Other components
-│   │   ├── ui/                           # Reusable UI components
-│   │   ├── inquiry-form.tsx              # Lead capture form
-│   │   └── vishnu-landing-page.tsx       # Main landing page
-│   │   
-│   ├── lib/                              
-│   ├── public/                           
-│   └── package.json                      
+├── Frontend/                        # Next.js Web App
+│   ├── app/                         # App Router (Home, About, Help, Apply, Programmes, Scholarships)
+│   ├── components/                  # UI Components (Header, Landing, Nemo Chat, inquiry-form)
+│   ├── public/                      # Brand assets (logo-vishnu.png, favicons)
+│   └── package.json                 # Project dependencies
 │
-├── deploy-scripts/
-│   └── frontend-amplify-deploy.sh        # Automated frontend deployment
-│
-├── docs/                                 # Documentation
+├── docs/                            # Developer guides and API specifications
+│   ├── APIdoc.md
 │   ├── architectureDeepDive.md
 │   ├── deploymentGuide.md
-│   ├── userGuide.md
-│   ├── APIdoc.md
 │   ├── modificationGuide.md
-│   └── media/                            # Images and diagrams
+│   └── userGuide.md
 │
-├── LICENSE                               # MIT License
-└── README.md                             # This file
+├── LICENSE                          # MIT License
+└── README.md                        # This file
 ```
 
-### Key Directories Explained
+---
 
-1. **Backend/cintana-admissions-agent/** - Contains all AWS infrastructure code (CDK), Lambda functions, and the Bedrock AgentCore agent implementation
-2. **Backend/.../AgentCore/** - The AI agent (Nemo) with custom tools for retrieval, Salesforce, WhatsApp, and advisor handoff
-3. **Backend/.../lambda/** - Three Lambda functions: agent proxy (streaming), form submission (Salesforce), and WhatsApp messaging (Twilio)
-4. **Frontend/** - Next.js application with university website and integrated chatbot UI
-5. **deploy-scripts/** - Automation scripts for deploying frontend to AWS Amplify
-6. **docs/** - Comprehensive documentation for architecture, deployment, usage, API, and modification
+## Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (v18+ recommended)
+- [npm](https://www.npmjs.com/)
+
+### 1. Run the Backend API Server
+
+Open a terminal window and set up the server:
+
+```bash
+cd Backend/mock-server
+npm install
+node server.js
+```
+
+Ensure you configure a `.env` file containing your Salesforce and Twilio sandbox credentials (see `Backend/mock-server/.env` template).
+
+### 2. Run the Next.js Frontend
+
+Open another terminal window and start the dev server:
+
+```bash
+cd Frontend
+npm install
+npm run dev
+```
+
+Browse to [http://localhost:3000](http://localhost:3000) to view the portal.
 
 ---
 
-## Deployment
-To deploy this solution, please follow the steps laid out in the[Deployment Guide](./docs/deploymentGuide.md).
+## Free-Tier Deployment
+
+To host this setup for free, consult a hosting flow leveraging:
+1. **Frontend**: Host the `Frontend` Next.js codebase on the [Vercel Hobby Tier](https://vercel.com).
+2. **Backend**: Host the `Backend/mock-server` Node.js code on the [Render Web Services Free Tier](https://render.com).
+3. **Database/CRM**: Use a free [Salesforce Developer Sandbox](https://developer.salesforce.com/).
+4. **SMS/WhatsApp Gateway**: Use the [Twilio Developer Sandbox](https://www.twilio.com/).
 
 ---
 
-## Modification
+## Subpages & Routing
 
-For detailed customization instructions, see the [Modification Guide](./docs/modificationGuide.md).
-
----
-
-## Credits
-
-This application was architected and developed by <a href="https://www.linkedin.com/in/loveneet-singh-6bb2851ba/" target="_blank">Loveneet Singh</a>, <a href="http://www.linkedin.com/in/pshristi" target="_blank"> Shristi Pathak</a>, and <a href="https://www.linkedin.com/in/apoorv16/" target="_blank">Apoorv Singh</a>, with solutions architect <a href="https://www.linkedin.com/in/arunarunachalam/" target="_blank">Arun Arunachalam</a>, program manager <a href="https://www.linkedin.com/in/thomas-orr/" target="_blank">Thomas Orr</a>  and product manager <a href="https://www.linkedin.com/in/rachelhayden/" target="_blank">Rachel Hayden</a>. Thanks to the ASU Cloud Innovation Centre Technical and Project Management teams for their guidance and support.
+- **Home Page (`/`)**: Main portal showcasing the hero slides, academics/placements/research sidebars, and program search tools.
+- **Admission Wizard (`/apply`)**: Step-by-step seat registration capturing EAPCET ranks and branch selection.
+- **Academic Specifications (`/programmes/ug`, `/programmes/pg`, `/programmes/phd`)**: Fee catalogs, branch information, and intake allocations.
+- **Scholarships Section (`/scholarships`)**: Detailed Andhra Pradesh Jaganna Vidya Deevena (JVD) qualifications and checklists.
+- **About Info (`/about`)**: Constituent college statistics (2 states, 4 campuses, autonomous NAAC/NBA status).
+- **Get Help (`/get-help`)**: Fast support options linking directly to phone logs and live chatbot redirection.
 
 ---
 
 ## License
 
-This project is distributed under the [MIT License](./LICENSE).
+This project is distributed under the [MIT License](./LICENSE). Refer to the license file for full details.
