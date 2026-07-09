@@ -16,6 +16,11 @@ export function Header({ onInquireNow }: HeaderProps) {
                     <VishnuLogo />
                 </Link>
                 <div className="flex items-center gap-4">
+                    <Link href="/counselor/dashboard">
+                        <Button variant="outline" className="border-gray-300 text-gray-700 hover:bg-gray-50">
+                            COUNSELOR PORTAL
+                        </Button>
+                    </Link>
                     <Link href="/get-help">
                         <Button variant="outline" className="border-[#5ea21a] text-[#5ea21a] hover:bg-[#5ea21a] hover:text-white">
                             GET HELP

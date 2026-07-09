@@ -316,7 +316,7 @@ export function VishnuLandingPage({ onInquireNow }: VishnuLandingPageProps) {
             </div>
             <div className="relative">
               <img
-                src="/img-vishnu-sec-1.webp"
+                src="/img-vishnu-sec-1.jpg"
                 alt="Vishnu Students"
                 className="rounded-lg shadow-2xl w-full"
               />

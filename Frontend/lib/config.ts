@@ -4,8 +4,8 @@ export type AppConfig = {
 };
 
 export const config: AppConfig = {
-  formSubmissionApi: process.env.NEXT_PUBLIC_FORM_SUBMISSION_API,
-  agentProxyUrl: process.env.NEXT_PUBLIC_AGENT_PROXY_URL,
+  formSubmissionApi: process.env.NEXT_PUBLIC_FORM_SUBMISSION_API || "http://localhost:8080/",
+  agentProxyUrl: process.env.NEXT_PUBLIC_AGENT_PROXY_URL || "http://localhost:8080/",
 };
 
 if (!config.formSubmissionApi) {

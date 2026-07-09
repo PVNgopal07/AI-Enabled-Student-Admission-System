@@ -18,7 +18,7 @@ export function VishnuIcon({ className = "w-12 h-12" }: { className?: string }) 
 
 export function VishnuLogo() {
     return (
-        <div className="flex items-center gap-4 select-none">
+        <div className="flex items-center gap-4 select-none" suppressHydrationWarning>
             {/* Left Column: Full image asset containing the interlocking icon and sub-labels */}
             <img
                 src="/logo-vishnu.png"

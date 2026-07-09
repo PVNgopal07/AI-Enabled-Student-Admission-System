@@ -31,7 +31,7 @@ export function NemoChatInterface({
 }: NemoChatInterfaceProps) {
   // Session management - using hardcoded values for testing
   const [sessionId, setSessionId] = useState<string>("");
-  const phoneNumber = initialContext?.cellPhone ?? null;
+  const phoneNumber = initialContext?.cellPhone ?? "anonymous";
 
   // Message state
   const [messages, setMessages] = useState<Message[]>([]);
@@ -279,14 +279,14 @@ Please start a friendly, personalized conversation with this student.`;
               {(isWaitingForResponse ||
                 isStreaming ||
                 currentStreamingMessage) && (
-                <ChatMessage
-                  type="ai"
-                  content={currentStreamingMessage}
-                  isWaitingForResponse={isWaitingForResponse}
-                  isStreaming={isStreaming}
-                  toolStatus={currentTool || undefined}
-                />
-              )}
+                  <ChatMessage
+                    type="ai"
+                    content={currentStreamingMessage}
+                    isWaitingForResponse={isWaitingForResponse}
+                    isStreaming={isStreaming}
+                    toolStatus={currentTool || undefined}
+                  />
+                )}
 
               {/* Show error message if any */}
               {error && (
@@ -319,16 +319,16 @@ Please start a friendly, personalized conversation with this student.`;
             {(isWaitingForResponse ||
               isStreaming ||
               currentStreamingMessage) && (
-              <div className="space-y-8 max-w-3xl mx-auto">
-                <ChatMessage
-                  type="ai"
-                  content={currentStreamingMessage}
-                  isWaitingForResponse={isWaitingForResponse}
-                  isStreaming={isStreaming}
-                  toolStatus={currentTool || undefined}
-                />
-              </div>
-            )}
+                <div className="space-y-8 max-w-3xl mx-auto">
+                  <ChatMessage
+                    type="ai"
+                    content={currentStreamingMessage}
+                    isWaitingForResponse={isWaitingForResponse}
+                    isStreaming={isStreaming}
+                    toolStatus={currentTool || undefined}
+                  />
+                </div>
+              )}
 
             {/* Show empty state only when not loading */}
             {!isWaitingForResponse && !isStreaming && <EmptyState />}
