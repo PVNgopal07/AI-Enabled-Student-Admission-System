@@ -73,13 +73,13 @@ export interface CourseItem {
 }
 
 export const COURSES: CourseItem[] = [
-    { id: "cse", name: "Computer Science & Engineering (CSE)", code: "CSE", fee: 120000, cutoffEapcet: 8000, cutoffEcet: 800 },
-    { id: "cse-aiml", name: "CSE (Artificial Intelligence & Machine Learning)", code: "CSE-AI&ML", fee: 120000, cutoffEapcet: 10000, cutoffEcet: 1000 },
-    { id: "it", name: "Information Technology (IT)", code: "IT", fee: 110000, cutoffEapcet: 15000, cutoffEcet: 1500 },
-    { id: "ece", name: "Electronics & Communication Engineering (ECE)", code: "ECE", fee: 90000, cutoffEapcet: 25000, cutoffEcet: 2500 },
-    { id: "eee", name: "Electrical & Electronics Engineering (EEE)", code: "EEE", fee: 80000, cutoffEapcet: 45000, cutoffEcet: 4500 },
-    { id: "mech", name: "Mechanical Engineering (ME)", code: "ME", fee: 75000, cutoffEapcet: 60000, cutoffEcet: 6000 },
-    { id: "civil", name: "Civil Engineering (CE)", code: "CE", fee: 70000, cutoffEapcet: 80000, cutoffEcet: 8000 },
+    { id: "cse", name: "Computer Science & Engineering (CSE)", code: "CSE", fee: 103000, cutoffEapcet: 8000, cutoffEcet: 800 },
+    { id: "cse-aiml", name: "CSE (Artificial Intelligence & Machine Learning)", code: "CSE-AI&ML", fee: 103000, cutoffEapcet: 10000, cutoffEcet: 1000 },
+    { id: "it", name: "Information Technology (IT)", code: "IT", fee: 103000, cutoffEapcet: 15000, cutoffEcet: 1500 },
+    { id: "ece", name: "Electronics & Communication Engineering (ECE)", code: "ECE", fee: 103000, cutoffEapcet: 25000, cutoffEcet: 2500 },
+    { id: "eee", name: "Electrical & Electronics Engineering (EEE)", code: "EEE", fee: 103000, cutoffEapcet: 45000, cutoffEcet: 4505 },
+    { id: "mech", name: "Mechanical Engineering (ME)", code: "ME", fee: 103000, cutoffEapcet: 60000, cutoffEcet: 6000 },
+    { id: "civil", name: "Civil Engineering (CE)", code: "CE", fee: 103000, cutoffEapcet: 80000, cutoffEcet: 8000 },
 ]
 
 const BTECH_BRANCHES = COURSES

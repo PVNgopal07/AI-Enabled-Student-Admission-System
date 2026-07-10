@@ -5,13 +5,13 @@ const path = require("path");
 const PORT = process.env.PORT || 8080;
 
 const COURSES = [
-    { id: "cse", name: "Computer Science & Engineering (CSE)", code: "CSE", fee: 120000 },
-    { id: "cse-aiml", name: "CSE (Artificial Intelligence & Machine Learning)", code: "CSE-AI&ML", fee: 120000 },
-    { id: "it", name: "Information Technology (IT)", code: "IT", fee: 110000 },
-    { id: "ece", name: "Electronics & Communication Engineering (ECE)", code: "ECE", fee: 90000 },
-    { id: "eee", name: "Electrical & Electronics Engineering (EEE)", code: "EEE", fee: 80000 },
-    { id: "mech", name: "Mechanical Engineering (ME)", code: "ME", fee: 75000 },
-    { id: "civil", name: "Civil Engineering (CE)", code: "CE", fee: 70000 }
+    { id: "cse", name: "Computer Science & Engineering (CSE)", code: "CSE", fee: 103000 },
+    { id: "cse-aiml", name: "CSE (Artificial Intelligence & Machine Learning)", code: "CSE-AI&ML", fee: 103000 },
+    { id: "it", name: "Information Technology (IT)", code: "IT", fee: 103000 },
+    { id: "ece", name: "Electronics & Communication Engineering (ECE)", code: "ECE", fee: 103000 },
+    { id: "eee", name: "Electrical & Electronics Engineering (EEE)", code: "EEE", fee: 103000 },
+    { id: "mech", name: "Mechanical Engineering (ME)", code: "ME", fee: 103000 },
+    { id: "civil", name: "Civil Engineering (CE)", code: "CE", fee: 103000 }
 ];
 
 const crypto = require("crypto");
@@ -388,7 +388,8 @@ VISHNU INSTITUTE OF TECHNOLOGY HANDBOOK & INFORMATION SHEET:
   * M.Tech in Computer Science and Engineering
   * Master of Business Administration (MBA)
 - Annual Tuition Fees (approximate, subject to convener/management quota):
-  * B.Tech Programs: ₹70,000 - ₹1,20,000 per year (depending on convener quota or management seats).
+  * B.Tech Programs: ₹1,03,000 per year (standard fee for all branches).
+  * M.Tech Programs: ₹72,200 per year.
   * MBA: ₹40,000 - ₹80,000 per year.
   * Scholarships are available via Jagannanna Amma Vodi, Jnanabhumi, and merit-based institutional fee waivers.
 - Admissions Requirements:
